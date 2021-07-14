@@ -1,0 +1,23 @@
+{% extends 'index/index.html' %}
+    {% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Xóa Người Dùng</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <p>Bạn có muốn xóa người dùng "{{bn.name}}" này ?</p>
+                <form action="{% url 'user:delete_user' bn.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="m-t-20 text-center">
+                        <a href="{% url 'user:view_users' %}">Hủy</a>
+                        <button class="btn btn-primary submit-btn" data-href-template="{% url 'user:view_users' %}">Xóa</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

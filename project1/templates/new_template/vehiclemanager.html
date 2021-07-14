@@ -1,0 +1,98 @@
+{% extends 'new_template/index.html' %}
+    {% block content %}
+        <!-- ############ Content START-->
+
+                <div class="d-flex flex" id="content-body">
+                    <div class="d-flex flex-column flex card" style="margin-top: 30px;">
+                        <div class="row ">
+                            <div class="p-4" >
+                                <h4 style="font-weight: 700;">Bảng quản lý xe ra vào</h4>
+                            </div>
+                            <table id="table" class="table" data-mobile-responsive="true"
+                                style="text-align: center;margin-top: 9px;">
+                                <thead>
+                                    <tr>
+                                        <th data-sortable="true" data-field="stt" style="width: 3cm;">Số thứ tự</th>
+                                        <th data-sortable="true" data-field="bsx" style="width: 7cm;">Biển số xe</th>
+                                        <th data-sortable="true" data-field="date" style="width: 4cm;">Khối lượng đất
+                                        </th>
+                                        <th data-sortable="true" data-field="time" style="width: 7cm;">Lái xe</th>
+                                        <th data-sortable="true" data-field="project" style="width: 10cm;">Công ty</th>
+                                        <th data-sortable="true" data-field="task" style="width: 4cm;">Tác vụ</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class=" " data-id="5">
+                                        <td style="min-width:20px;">
+                                            <small class="text-muted">1</small>
+                                        </td>
+                                        <td>75D121507</td>
+                                        <td>1300</td>
+                                        <td>Nguyễn Văn A</td>
+                                        <td>Công ty TNHH D</td>
+                                        <td> <label class="ui-check m-0 ">
+                                                <input type="checkbox" name="id" value="9">
+                                                <i></i>
+                                            </label>
+                                        <td>
+
+                                    </tr>
+                                    <tr class=" " data-id="5">
+                                        <td style="min-width:20px;">
+                                            <small class="text-muted">2</small>
+                                        </td>
+                                        <td>75D121506</td>
+                                        <td>900</td>
+                                        <td>Nguyễn Văn B</td>
+                                        <td>Công ty TNHH C</td>
+                                        <td> <label class="ui-check m-0 ">
+                                            <input type="checkbox" name="id" value="9">
+                                            <i></i>
+                                        </label>
+                                    <td>
+                                    </tr>
+                                    <tr class=" " data-id="5">
+                                        <td style="min-width:20px;">
+                                            <small class="text-muted">3</small>
+                                        </td>
+                                        <td>75D121505</td>
+                                        <td>700</td>
+                                        <td>Nguyễn Văn C</td>
+                                        <td>Công ty TNHH A</td>
+                                        <td> <label class="ui-check m-0 ">
+                                            <input type="checkbox" name="id" value="9">
+                                            <i></i>
+                                        </label>
+                                    <td>
+                                    </tr>
+                                    <tr class=" " data-id="5">
+                                        <td style="min-width:20px;">
+                                            <small class="text-muted">4</small>
+                                        </td>
+                                        <td>75D121504</td>
+                                        <td>1000</td>
+                                        <td>Nguyễn Văn D</td>
+                                        <td>Công ty TNHH B</td>
+                                        <td> <label class="ui-check m-0 ">
+                                            <input type="checkbox" name="id" value="9">
+                                            <i></i>
+                                        </label>
+                                    <td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="p-4">.
+                                <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Thêm</button>
+                            </div>
+                            <div class="p-4">.
+                                <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Sửa</button>
+                            </div>
+                            <div class="p-4">.
+                                <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Xóa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    {% endblock %}

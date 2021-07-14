@@ -1,0 +1,38 @@
+{% extends 'new_template/index.html' %}
+    {% block content %}
+        <!-- ############ Content START-->
+         <div class="d-flex flex" id="content-body">
+                    <div class="d-flex flex-column flex card" style="margin-top: 30px;">
+                        <div class="row ">
+                            <div class="col-5 p-5 card" style="margin-top: 2.5rem; background-color: aqua;">
+                                <h5>CAM1</h5>
+
+                            </div>
+                            <div class="col-5 p-5 card" style="margin-top: 2.5rem; background-color: aqua;">
+                                <h5>CAM2</h5>
+                                <video autoplay="true" id="videoElement">
+
+                                </video>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="col-5 p-5 card" style="margin-top: 2.5rem; background-color: aqua;">
+                                <h5>CAM3</h5>
+                                <video autoplay="true" id="videoElement">
+
+                                </video>
+
+                            </div>
+                            <div class="col-5 p-5 card" style="margin-top: 2.5rem; background-color: aqua;">
+                                <h5>CAM4</h5>
+                                <video autoplay="true" id="videoElement">
+
+                                </video>
+                            </div>
+                        </div>
+
+                    </div>
+         </div>
+        <!-- ############ Main END-->
+    {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'index/index.html' %}
+    {% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Chỉnh Sửa Người Dùng</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Tên Người Dùng</label>
+                        {{ bn.name }}
+                    </div>
+                    <div class="form-group">
+                        <label>Tên Đăng Nhập</label>
+                        {{ bn.username }}
+                    </div>
+                    <div class="form-group">
+                        <label>Mật Khẩu</label>
+                        {{bn.password}}
+                    </div>
+                    <div class="form-group">
+                        <label>Số Điện Thoại</label>
+                        {{bn.phone}}
+                    </div>
+                    <div class="form-group">
+                        <label>Chức Vụ</label>
+                        {{bn.roll }}
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn" data-href-template="">Lưu Lại</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

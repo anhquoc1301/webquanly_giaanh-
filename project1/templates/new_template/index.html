@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ReportSheet</title>
+    <meta name="description" content="Responsive, Bootstrap, BS4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- style -->
+    <!-- build:css ../assets/css/site.min.css -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css" />
+    <!-- endbuild -->
+</head>
+
+<body class="layout-row">
+    <!-- ############ Aside START-->
+
+    <!-- ############ Aside END-->
+    <div id="main" class="layout-column flex">
+        <!-- ############ Header START-->
+        <div id="header" class="page-header ">
+            <div class="navbar navbar-expand-lg">
+                <ul class="nav navbar-menu order-1 order-lg-2">
+                   <h3>Xin chào! {{request.user.name}}</h3>
+                    <!-- User dropdown menu -->
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link d-flex align-items-center px-2 text-color">
+                            <span class="avatar w-24" style="margin: -4px; margin-top: -9px;"><img src="{% static 'assets/img/a1.jpg' %}" alt="..."></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right w mt-3 animate fadeIn">
+                            <a class="dropdown-item" href="{% url 'user:edit_profile'%}">
+                                <span>Thay đổi thông tin</span>
+                            </a>
+                            <a class="dropdown-item" href="{% url 'user:logout'%}">Đăng xuất</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- ############ Footer END-->
+        <!-- ############ Content START-->
+        <div id="content" class="flex ">
+            <!-- ############ Main START-->
+
+            <div class="d-flex flex fixed-content">
+                <div class="fade aside aside-sm" id="content-aside">
+                    <div class="modal-dialog d-flex flex-column w-md bg-body" id="username">
+                        <div class="scrollable hover">
+                            <div class="sidenav my-3">
+                                <nav class="nav-active-text-primary" data-nav style="font-size: 17px;">
+                                    <ul class="nav">
+                                        <li>
+                                            <a href="{% url 'user:export_report'%}">
+                                                <span class="nav-badge">
+                                                    <b class="badge badge-circle text-primary mx-1"></b>
+                                                </span>
+                                                <span class="nav-text">Xuất báo cáo</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'user:view_camera'%}">
+                                                <span class="nav-badge">
+                                                    <b class="badge badge-circle text-primary mx-1"></b>
+                                                </span>
+                                                <span class="nav-text">Xem trực tuyến</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'user:management_car'%}">
+                                                <span class="nav-badge">
+                                                    <b class="badge badge-circle text-primary mx-1"></b>
+                                                </span>
+                                                <span class="nav-text">Quản lý xe ra vào</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'user:view_users'%}">
+                                                <span class="nav-badge">
+                                                    <b class="badge badge-circle text-primary mx-1"></b>
+                                                </span>
+                                                <span class="nav-text name">Quản lý người dùng</span>
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% block content %}
+
+        {% endblock %}
+            </div>
+        </div>
+    </div>
+    <!-- ############ Content END-->
+    <!-- build:js ../assets/js/site.min.js -->
+    <!-- jQuery -->
+    <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'libs/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- ajax page -->
+    <script src="{% static 'libs/pjax/pjax.min.js' %}"></script>
+    <script src="{% static 'assets/js/ajax.js' %}"></script>
+    <!-- lazyload plugin -->
+    <script src="{% static 'assets/js/lazyload.config.js' %}"></script>
+    <script src="{% static 'assets/js/lazyload.js' %}"></script>
+    <script src="{% static 'assets/js/plugin.js' %}"></script>
+    <!-- scrollreveal -->
+    <script src="{% static 'libs/scrollreveal/dist/scrollreveal.min.js' %}"></script>
+    <!-- feathericon -->
+    <script src="{% static 'libs/feather-icons/dist/feather.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/feathericon.js' %}"></script>
+    <!-- theme -->
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="{% static 'assets/js/utils.js' %}"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
