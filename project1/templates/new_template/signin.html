@@ -1,5 +1,22 @@
-{% extends 'new_template/index.html' %}
-    {% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ReportSheet</title>
+    <meta name="description" content="Responsive, Bootstrap, BS4" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- style -->
+    <!-- build:css ../assets/css/site.min.css -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" type="text/css" />
+    <!-- endbuild -->
+</head>
+
+<body class="layout-row">
+    <!-- ############ Aside START-->
     <body class="layout-row">
         <div class="d-flex flex-column flex">
             <div class="row no-gutters h-100">
@@ -51,4 +68,29 @@
             </div>
         </div>
     </body>
-    {% endblock %}
+    <!-- ############ Content END-->
+    <!-- build:js ../assets/js/site.min.js -->
+    <!-- jQuery -->
+    <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'libs/popper.js/dist/umd/popper.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- ajax page -->
+    <script src="{% static 'libs/pjax/pjax.min.js' %}"></script>
+    <script src="{% static 'assets/js/ajax.js' %}"></script>
+    <!-- lazyload plugin -->
+    <script src="{% static 'assets/js/lazyload.config.js' %}"></script>
+    <script src="{% static 'assets/js/lazyload.js' %}"></script>
+    <script src="{% static 'assets/js/plugin.js' %}"></script>
+    <!-- scrollreveal -->
+    <script src="{% static 'libs/scrollreveal/dist/scrollreveal.min.js' %}"></script>
+    <!-- feathericon -->
+    <script src="{% static 'libs/feather-icons/dist/feather.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins/feathericon.js' %}"></script>
+    <!-- theme -->
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="{% static 'assets/js/utils.js' %}"></script>
+    <!-- endbuild -->
+</body>
+
+</html>
