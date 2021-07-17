@@ -31,6 +31,13 @@
                 </div>
                 <div class="col-md-6">
                     <div id="content-body">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <div class="p-3 p-md-5">
 
                             <h4>Công ty TNHH xây dựng Thành Phát</h4>
@@ -42,15 +49,17 @@
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" placeholder="Enter Username" name="username">
+                                    <input type="text" class="form-control" placeholder="Enter Username" name="username1">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" placeholder="Password" name="password">
-                                    <div class="my-3 text-right">
-                                        <a href="forgot-password.html" class="text-muted">Quên mật khẩu?</a>
-                                    </div>
+                                    <input type="password" class="form-control" placeholder="Password" name="password1">
                                 </div>
+                                {% if messages %}
+                                    {%for message in messages %}
+                                        {{ message }}
+                                    {% endfor %}
+                                {% endif %}
                                 <div class="checkbox mb-3">
                                     <label class="ui-check">
                                         <input type="checkbox">
@@ -58,9 +67,6 @@
                                     </label>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-4">Đăng nhập</button>
-                                <div>Bạn chưa có tài khoản?
-                                    <a href="signup.html" class="text-primary">Đăng ký</a>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -88,6 +94,13 @@
     <script src="{% static 'libs/feather-icons/dist/feather.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/feathericon.js' %}"></script>
     <!-- theme -->
+    <script>
+        setTimeout(function(){
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 2000)
+    </script>
     <script src="{% static 'assets/js/theme.js' %}"></script>
     <script src="{% static 'assets/js/utils.js' %}"></script>
     <!-- endbuild -->

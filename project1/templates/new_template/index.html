@@ -92,9 +92,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="content">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
         {% block content %}
 
         {% endblock %}
+                </div>
             </div>
         </div>
     </div>
@@ -118,6 +127,13 @@
     <script src="{% static 'libs/feather-icons/dist/feather.min.js' %}"></script>
     <script src="{% static 'assets/js/plugins/feathericon.js' %}"></script>
     <!-- theme -->
+    <script>
+        setTimeout(function(){
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 2000)
+    </script>
     <script src="{% static 'assets/js/theme.js' %}"></script>
     <script src="{% static 'assets/js/utils.js' %}"></script>
     <!-- endbuild -->

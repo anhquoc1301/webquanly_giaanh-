@@ -9,3 +9,21 @@ class User(AbstractUser):
     position=models.CharField(max_length=30)
     roll_choice = (('Admin', 'Admin'), ('Người Xem', 'Người Xem'), ('Người Báo Cáo', 'Người Báo Cáo'))
     roll=models.CharField(max_length=20, choices=roll_choice, default='')
+    USERNAME_FIELD = 'username'
+
+
+
+class Carmanagement(models.Model):
+    # create_at = models.DateTimeField(auto_now_add=True)
+    car_number=models.CharField(max_length=15)
+    mass=models.CharField(max_length=10)
+    driver=models.CharField(max_length=50)
+    company=models.CharField(max_length=50)
+
+
+
+class FileExcel_Carmanagement(models.Model):
+    car_number=models.CharField(max_length=15)
+    mass=models.CharField(max_length=10)
+    driver=models.CharField(max_length=50)
+    company=models.CharField(max_length=50)

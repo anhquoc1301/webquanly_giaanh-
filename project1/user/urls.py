@@ -1,10 +1,11 @@
 
 from django.urls import path
-from .views import dangnhap, view_users, add_user, edit_user, delete_user, view_camera, management_car, export_report, logout, edit_profile, demo
+from .views import login, LoginClass, view_camera, view_users, add_user, edit_user, delete_user, management_car, export_report, logout, edit_profile
+from .views import import_excel_car, export_excel_cal, dowload_local_excel_car, add_managementcar, edit_managementcar, delete_managementcar
 
 app_name='user'
 urlpatterns = [
-    path('', dangnhap.as_view(), name='login'),
+    path('', LoginClass.as_view(), name='login'),
     path('view_users/', view_users, name='view_users'),
     path('add_user/', add_user, name='add_user'),
     path('edit_user/<str:pk>/', edit_user, name='edit_user'),
@@ -14,7 +15,11 @@ urlpatterns = [
     path('export_report/', export_report, name='export_report'),
     path('logout/', logout, name='logout'),
     path('edit_profile/', edit_profile, name='edit_profile'),
-    path('demo/', demo, name='demo')
-
+    path('import_excel_car/', import_excel_car, name='import_excel_car'),
+    path('export_excel_car/', export_excel_cal, name='export_excel_car'),
+    path('dowload_local_excel_car/', dowload_local_excel_car, name='dowload_local_excel_car'),
+    path('add_managementcar/', add_managementcar.as_view(), name='add_managementcar'),
+    path('edit_managementcar/<str:pk>/', edit_managementcar.as_view(), name='edit_managementcar'),
+    path('delete_managementcar/<str:pk>/', delete_managementcar, name='delete_managementcar'),
 
 ]

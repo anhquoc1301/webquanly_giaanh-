@@ -33,6 +33,12 @@
                     <div class="form-group">
                         <label>Quyền</label>
                         {{bn.roll }}
+                    </div>
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     <div class="m-t-20 text-center">
                         <button class="btn btn-primary submit-btn" data-href-template="">Lưu Lại</button>
                     </div>

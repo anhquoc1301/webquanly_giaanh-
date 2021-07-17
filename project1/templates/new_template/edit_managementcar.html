@@ -1,9 +1,9 @@
-{% extends 'index/index.html' %}
+{% extends 'new_template/index.html' %}
     {% block content %}
     <div class="content">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <h4 class="page-title">Chỉnh Sửa Người Dùng</h4>
+            <div class="col-lg-10 offset-lg-3">
+                <h3 class="page-title">Chỉnh Sửa Chuyến Xe</h3>
             </div>
         </div>
         <div class="row">
@@ -11,24 +11,26 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label>Tên Người Dùng</label>
-                        {{ bn.name }}
+                        <label>Biển số xe</label>
+                        {{ form.car_number }}
                     </div>
                     <div class="form-group">
-                        <label>Tên Đăng Nhập</label>
-                        {{ bn.username }}
+                        <label>Khối lượng đất</label>
+                        {{ form.mass }}
                     </div>
                     <div class="form-group">
-                        <label>Mật Khẩu</label>
-                        {{bn.password}}
+                        <label>Tên lái xe</label>
+                        {{ form.driver }}
                     </div>
                     <div class="form-group">
-                        <label>Số Điện Thoại</label>
-                        {{bn.phone}}
+                        <label>Công ty</label>
+                        {{ form.company }}
                     </div>
-                    <div class="form-group">
-                        <label>Chức Vụ</label>
-                        {{bn.roll }}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     <div class="m-t-20 text-center">
                         <button class="btn btn-primary submit-btn" data-href-template="">Lưu Lại</button>
                     </div>

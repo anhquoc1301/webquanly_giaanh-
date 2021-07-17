@@ -1,0 +1,23 @@
+{% extends 'new_template/index.html' %}
+    {% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Xóa Chuyến Xe</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <p>Bạn có muốn xóa chuyến xe có biển số "{{form.car_number}}" này ?</p>
+                <form action="{% url 'user:delete_managementcar' form.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="m-t-20 text-center">
+                        <a href="{% url 'user:management_car' %}">Hủy</a>
+                        <button class="btn btn-primary submit-btn" data-href-template="{% url 'user:management_car' %}">Xóa</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
