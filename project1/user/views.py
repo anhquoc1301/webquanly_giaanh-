@@ -184,43 +184,38 @@ def dowload_local_excel_car(request):
 
 
 
-@login_required
 @admin_only
-class add_managementcar(View):
-    def get(self, request):
-        form=car_management()
-        return render(request, 'new_template/add_managementcar.html',{'form': form})
-    def post(self, request):
-        if request.method=="POST":
-            a=car_management(request.POST, request.FILES)
-            if a.is_valid():
-                a.save()
-                messages.success(request,'Thêm thành công')
-                return redirect('user:management_car')
-            else:
-                messages.error(request,'Nhập sai dữ liệu')
-                return redirect('/')
-
-
-
 @login_required
+def add_managementcar(request):
+    form=car_management()
+    if request.method=="POST":
+        a=car_management(request.POST, request.FILES)
+        if a.is_valid():
+            a.save()
+            messages.success(request,'Thêm thành công')
+            return redirect('user:management_car')
+        else:
+            messages.error(request,'Nhập sai dữ liệu')
+            return redirect('/')
+    return render(request, 'new_template/add_managementcar.html',{'form': form})
+
+
 @admin_only
-class edit_managementcar(View):
-    def get(self, request, pk):
-        a=Carmanagement.objects.get(id=pk)
-        form=car_management( instance=a )
-        return render(request, 'new_template/edit_managementcar.html',{'form': form})
-    def post(self, request, pk):
-        if request.method=="POST":
-            a = Carmanagement.objects.get(id=pk)
-            b=car_management(request.POST,request.FILES, instance=a)
-            if b.is_valid():
-                b.save()
-                messages.success(request,'Sửa thành công!')
-                return redirect('user:management_car')
-            else:
-                messages.error(request, 'Nhập sai dữ liệu')
-                return redirect('/')
+@login_required
+def edit_managementcar(request, pk):
+    a=Carmanagement.objects.get(id=pk)
+    form=car_management(instance=a)
+    if request.method=="POST":
+        b=car_management(request.POST,request.FILES, instance=a)
+        if b.is_valid():
+            b.save()
+            messages.success(request,'Sửa thành công!')
+            return redirect('user:management_car')
+        else:
+            messages.error(request, 'Nhập sai dữ liệu')
+            return redirect('/')
+    return render(request, 'new_template/edit_managementcar.html',{'form': form})
+
 
 
 
