@@ -228,4 +228,8 @@ def delete_managementcar(request, pk):
             messages.success(request, 'Xóa thành công!')
             return redirect('user:management_car')
         return render(request, 'new_template/delete_managementcar.html',{'form': a})
+def test(request):
+    with open('jsonfiles/data.json') as p:
+        return HttpResponse({p})
+
 
