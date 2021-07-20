@@ -235,8 +235,10 @@ def delete_managementcar(request, pk):
 auto_download()
 
 # @login_required
+k=[]
 def export_report(request):
     num=CarNumber.objects.all()
+    c = []
     if request.method== "POST" :
         a=request.POST.getlist('mycheck')
         b=request.POST.get('mydate')
@@ -251,9 +253,7 @@ def export_report(request):
         h[0] = int(h[0])
         h[1] = int(h[1])
         h[2] = int(h[2])
-        c=[]
         local = 'user/media/abc'f'{g[0]}''x'f'{g[1]}''x'f'{g[2]}''/data.json'
-
         try:
             print("open ")
             f = default_storage.open(os.path.join(local), 'r')
@@ -262,13 +262,18 @@ def export_report(request):
                 for j in a:
                     if i['Plate']==j:
                         c.append(i)
-            return render(request ,'new_template/reportsheet.html', {'form': c})
         except:
             downloadListPlates(datetime(year=h[0], month=h[1], day=h[2]))
             f = default_storage.open(os.path.join(local), 'r')
             data1 = json.loads(f.read())
             for i in data1:
-                c.append(i)
-            return render(request ,'new_template/reportsheet.html', {'form': c})
-    return render(request, 'new_template/reportsheet.html',{'form2':num})
+                for j in a:
+                    if i['Plate']==j:
+                        c.append(i)
+    k=c
+    context={'form2': num, 'form': c }
+    return render(request, 'new_template/reportsheet.html',context)
+def export_report_excel(request):
+    k
+
 
