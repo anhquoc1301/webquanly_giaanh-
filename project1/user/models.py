@@ -27,3 +27,6 @@ class FileExcel_Carmanagement(models.Model):
     mass=models.CharField(max_length=10)
     driver=models.CharField(max_length=50)
     company=models.CharField(max_length=50)
+
+class CarNumber(models.Model):
+    number=models.CharField(max_length=10)

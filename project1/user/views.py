@@ -3,7 +3,7 @@ from django.views import View
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import User, Carmanagement
+from .models import User, Carmanagement, CarNumber
 from .forms import u_r, u_r2, car_management
 from .decorators import admin_only
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,12 @@ from django.contrib import auth
 from django.contrib import messages
 from .resources import Carmanagement_resources, FileExcel_Carmanagement_resources
 from tablib import Dataset
+from .auto import auto_download
+import json
+from django.core.files.storage import default_storage
+import os
+from .nvr_api import downloadListPlates
+from datetime import datetime
 # Create your views here.
 class LoginClass(View):
     def get(self,request):
@@ -104,9 +110,6 @@ def management_car(request):
 
 
 
-@login_required
-def export_report(request):
-    return render(request, 'new_template/reportsheet.html')
 
 
 
@@ -228,8 +231,44 @@ def delete_managementcar(request, pk):
             messages.success(request, 'Xóa thành công!')
             return redirect('user:management_car')
         return render(request, 'new_template/delete_managementcar.html',{'form': a})
-def test(request):
-    with open('jsonfiles/data.json') as p:
-        return HttpResponse({p})
 
+auto_download()
+
+# @login_required
+def export_report(request):
+    num=CarNumber.objects.all()
+    if request.method== "POST" :
+        a=request.POST.getlist('mycheck')
+        b=request.POST.get('mydate')
+        h=b.split('-')
+        g=b.split('-')
+        if h[1][0]=='0':
+            h[1]=h[1].strip('0')
+            h[1] = int(h[1])
+        if h[2][0] == '0':
+            h[2] = h[2].strip('0')
+            h[2] = int(h[2])
+        h[0] = int(h[0])
+        h[1] = int(h[1])
+        h[2] = int(h[2])
+        c=[]
+        local = 'user/media/abc'f'{g[0]}''x'f'{g[1]}''x'f'{g[2]}''/data.json'
+
+        try:
+            print("open ")
+            f = default_storage.open(os.path.join(local), 'r')
+            data1 = json.loads(f.read())
+            for i in data1:
+                for j in a:
+                    if i['Plate']==j:
+                        c.append(i)
+            return render(request ,'new_template/reportsheet.html', {'form': c})
+        except:
+            downloadListPlates(datetime(year=h[0], month=h[1], day=h[2]))
+            f = default_storage.open(os.path.join(local), 'r')
+            data1 = json.loads(f.read())
+            for i in data1:
+                c.append(i)
+            return render(request ,'new_template/reportsheet.html', {'form': c})
+    return render(request, 'new_template/reportsheet.html',{'form2':num})
 

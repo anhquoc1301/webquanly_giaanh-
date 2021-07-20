@@ -1,83 +1,29 @@
 {% extends 'new_template/index.html' %}
     {% block content %}
-
+            <form action=""  method="POST" class="form-signin">
+                {% csrf_token %}
                 <div class="d-flex flex" id="content-body">
                     <div class="d-flex flex-column flex card" style="margin-top: 30px;">
                         <div class="row ">
                             <div class="col-6 col-md-4 col-ms-4">
                                 <div class=" p-3">
                                     <h5>Chọn danh sách xe</h5>
-
                                     <div class="list list-row block">
-                                        <div class="list-item " data-id="20">
-                                            <div>
-                                                <label class="ui-check m-0 ">
-                                                    <input type="checkbox" name="id" value="20">
-                                                    <i></i>
-                                                </label>
-                                            </div>
-                                            <div class="flex">
-                                                <div class="item-feed h-2x">
-                                                    <a href='#'></a> Chọn tất cả
+                                        {% for i in form2 %}
+                                            <div class="list-item " data-id="21">
+                                                <div>
+                                                    <label class="ui-check m-0 ">
+                                                        <input type="checkbox" name="mycheck" value={{i.number}}>
+                                                        <i></i>
+                                                    </label>
+                                                </div>
+                                                <div class="flex">
+                                                    <div class="item-feed h-2x">
+                                                        <a href='#'></a> {{i.number}}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="list-item " data-id="21">
-                                            <div>
-                                                <label class="ui-check m-0 ">
-                                                    <input type="checkbox" name="id" value="20">
-                                                    <i></i>
-                                                </label>
-                                            </div>
-                                            <div class="flex">
-                                                <div class="item-feed h-2x">
-                                                    <a href='#'></a> 75D121509
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="list-item " data-id="21">
-                                            <div>
-                                                <label class="ui-check m-0 ">
-                                                    <input type="checkbox" name="id" value="20">
-                                                    <i></i>
-                                                </label>
-                                            </div>
-                                            <div class="flex">
-                                                <div class="item-feed h-2x">
-                                                    <a href='#'></a> 75D121508
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="list-item " data-id="21">
-                                            <div>
-                                                <label class="ui-check m-0 ">
-                                                    <input type="checkbox" name="id" value="20">
-                                                    <i></i>
-                                                </label>
-                                            </div>
-                                            <div class="flex">
-                                                <div class="item-feed h-2x">
-                                                    <a href='#'></a> 75D121507
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="list-item " data-id="21">
-                                            <div>
-                                                <label class="ui-check m-0 ">
-                                                    <input type="checkbox" name="id" value="20">
-                                                    <i></i>
-                                                </label>
-                                            </div>
-                                            <div class="flex">
-                                                <div class="item-feed h-2x">
-                                                    <a href='#'></a> 75D121506
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -85,20 +31,12 @@
                                 <div class=" p-3">
                                     <h5>Chọn ngày</h5>
                                     <div>
-                                        <h6>Từ ngày</h6>
                                         <div class="form-group">
                                             <input id="event-start-date" type="date" class="form-control"
-                                                placeholder="Date">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h6>Đến ngày</h6>
-                                        <div class="form-group">
-                                            <input id="event-start-date" type="date" class="form-control"
-                                                placeholder="Date">
+                                                placeholder="Date" name="mydate">
                                         </div>
                                         <div class="p-3">.
-                                            <button class="btn w-sm mb-1 btn-md indigo" style="margin-left: -23px;">Lọc</button>
+                                            <button type="submit" class="btn w-sm mb-1 btn-md indigo" style="margin-left: -23px;">Lọc</button>
                                         </div>
                                     </div>
                                 </div>
@@ -119,46 +57,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class=" " data-id="5" >
-                                    <td style="min-width:20px;">
-                                        <small class="text-muted">1</small>
-                                    </td>
-                                    <td>75D121507</td>
-                                    <td>914-12-20</td>
-                                    <td>10:23</td>
-                                    <td>1300</td>
-                                    
-                                </tr>
-                                <tr class=" " data-id="5">
-                                    <td style="min-width:20px;">
-                                        <small class="text-muted">2</small>
-                                    </td>
-                                    <td>75D121506</td>
-                                    <td>914-12-20</td>
-                                    <td>12:23</td>
-                                    <td>900</td>
-                                    
-                                </tr>
-                                <tr class=" " data-id="5">
-                                    <td style="min-width:20px;">
-                                        <small class="text-muted">3</small>
-                                    </td>
-                                    <td>75D121505</td>
-                                    <td>914-12-20</td>
-                                    <td>13:23</td>
-                                    <td>700</td>
-                                    
-                                </tr>
-                                <tr class=" " data-id="5">
-                                    <td style="min-width:20px;">
-                                        <small class="text-muted">4</small>
-                                    </td>
-                                    <td>75D121504</td>
-                                    <td>914-12-20</td>
-                                    <td>11:23</td>
-                                    <td>1000</td>
-                                    
-                                </tr> 
+                                {% for i in form %}
+                                    <tr class=" " data-id="5" >
+                                        <td style="min-width:20px;">
+                                            <small class="text-muted">1</small>
+                                        </td>
+                                        <td>{{i.Plate}}</td>
+                                        <td>{{i.Date}}</td>
+                                        <td>{{i.Time}}</td>
+                                        <td>1300</td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                         <div>.
@@ -166,6 +75,7 @@
                         </div>
                     </div>
                 </div>
+            </form>
 
         <!-- ############ Main END-->
     {% endblock %}
