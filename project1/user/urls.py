@@ -1,7 +1,7 @@
 
 from django.urls import path
 from .views import LoginClass, view_camera, view_users, add_user, edit_user, delete_user, management_car, export_report, logout, edit_profile
-from .views import import_excel_car, export_excel_cal, dowload_local_excel_car, add_managementcar, edit_managementcar, delete_managementcar
+from .views import import_excel_car, export_excel_cal, dowload_local_excel_car, add_managementcar, edit_managementcar, delete_managementcar, export_report_excel
 
 app_name='user'
 urlpatterns = [
@@ -21,5 +21,6 @@ urlpatterns = [
     path('add_managementcar/', add_managementcar, name='add_managementcar'),
     path('edit_managementcar/<str:pk>/', edit_managementcar, name='edit_managementcar'),
     path('delete_managementcar/<str:pk>/', delete_managementcar, name='delete_managementcar'),
+    path('export_report_excel/', export_report_excel, name='export_report_excel'),
 
 ]

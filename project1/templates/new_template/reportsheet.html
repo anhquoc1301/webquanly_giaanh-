@@ -74,9 +74,10 @@
                             <tbody>
                                 {% for i in form %}
                                     <tr class=" " data-id="5" >
-                                        <td style="min-width:20px;">
-                                            <small class="text-muted">1</small>
-                                        </td>
+<!--                                        <td style="min-width:20px;">-->
+<!--                                            <small class="text-muted">1</small>-->
+<!--                                        </td>-->
+                                        <td>{{i.id}}</td>
                                         <td>{{i.Plate}}</td>
                                         <td>{{i.Date}}</td>
                                         <td>{{i.Time}}</td>
@@ -95,25 +96,18 @@
             </form>
             <script language="javascript">
 
-                        // Chức năng chọn hết
                         document.getElementById("btn1").onclick = function ()
                         {
-                            // Lấy danh sách checkbox
                             var checkboxes = document.getElementsByName('mycheck[]');
 
-                            // Lặp và thiết lập checked
                             for (var i = 0; i < checkboxes.length; i++){
                                 checkboxes[i].checked = true;
                             }
                         };
 
-                        // Chức năng bỏ chọn hết
                         document.getElementById("btn2").onclick = function ()
                         {
-                            // Lấy danh sách checkbox
                             var checkboxes = document.getElementsByName('mycheck[]');
-
-                            // Lặp và thiết lập Uncheck
                             for (var i = 0; i < checkboxes.length; i++){
                                 checkboxes[i].checked = false;
                             }
