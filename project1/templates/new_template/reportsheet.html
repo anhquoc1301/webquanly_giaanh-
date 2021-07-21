@@ -19,7 +19,8 @@
                                                 </div>
                                                 <div class="flex">
                                                     <div class="item-feed h-2x">
-                                                        <a href='#'></a> {{i.number}}
+                                                        <a href='#'></a>
+                                                        <td>{{i.number}}</td>
                                                     </div>
                                                 </div>
                                             </div>
@@ -33,7 +34,14 @@
                             </div>
                             <div class="col-6 col-md-4 col-ms-4">
                                 <div class=" p-3">
-                                    <label for="cars"><h5>Chọn hướng xe</h5></label>
+                                     <a href="{% url 'user:view_car_number' %}">
+                                        <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Thêm xóa biển số xe</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-ms-4">
+                                <div class=" p-3">
+                                    <h5>Chọn hướng xe</h5>
                                         <select name="cars" id="cars">
                                           <option value="all">Tất cả</option>
                                           <option value="upward">Đi vào</option>
@@ -51,7 +59,7 @@
                                                 placeholder="Date" name="mydate">
                                         </div>
                                         <div class="p-3">.
-                                            <button type="submit" class="btn w-sm mb-1 btn-md indigo" style="margin-left: -23px;">Lọc</button>
+                                            <button type='submit' class="btn w-sm mb-1 btn-md indigo" style="margin-left: -23px;">Lọc</button>
                                         </div>
                                     </div>
                                 </div>
@@ -68,21 +76,30 @@
                                     <th data-sortable="true" data-field="date" style="width: 4cm;">Ngày</th>
                                     <th data-sortable="true" data-field="time" style="width: 4cm;">Giờ</th>
                                     <th data-sortable="true" data-field="project" style="width: 4cm;">Hướng đi</th>
+                                    <th data-sortable="true" data-field="project" style="width: 4cm;">Tác vụ</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for i in form %}
-                                    <tr class=" " data-id="5" >
-<!--                                        <td style="min-width:20px;">-->
-<!--                                            <small class="text-muted">1</small>-->
-<!--                                        </td>-->
-                                        <td>{{i.id}}</td>
-                                        <td>{{i.Plate}}</td>
-                                        <td>{{i.Date}}</td>
-                                        <td>{{i.Time}}</td>
-                                        <td>{{i.Direction}}</td>
-                                    </tr>
+                                        <tr class=" " data-id="5" >
+    <!--                                        <td style="min-width:20px;">-->
+    <!--                                            <small  class="text-muted">1</small>-->
+    <!--                                        </td>-->
+                                            <td>{{j}}</td>
+                                            <td>{{i.Plate}}</td>
+                                            <td>{{i.Date}}</td>
+                                            <td>{{i.Time}}</td>
+                                            <td>{{i.Direction}}</td>
+                                            <td class="text-right">
+                                                <div class="dropdown dropdown-action">
+                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <a class="dropdown-item"  href="{% url 'user:view_image' i.Image %}"><i class="fa fa-pencil m-r-5"></i>Xem Ảnh</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                 {% endfor %}
                             </tbody>
                         </table>

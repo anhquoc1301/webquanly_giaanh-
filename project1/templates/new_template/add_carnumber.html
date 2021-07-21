@@ -1,0 +1,30 @@
+{% extends 'new_template/index.html' %}
+    {% block content %}
+
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Thêm Mới Biển Số Xe</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Nhập biển số</label>
+                        <input type="text" name="car_number">
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button type="submit" class="btn btn-primary submit-btn">Thêm Mới</button>
+                    </div>
+                </form>
+            </div>
+             <div class="col-lg-8 offset-lg-2">
+                    <div class="m-t-20 text-center">
+                        <a href="{% url 'user:view_car_number'%}">
+                            <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Thoát</button>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    {% endblock %}

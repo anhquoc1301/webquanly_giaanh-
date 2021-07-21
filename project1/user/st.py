@@ -6,7 +6,7 @@ class settings():
     nvr_user = "admin"
     nvr_pass = "123456a@"
     root_path = "./"
-    media_dirname = "user/media/"
+    media_dirname = "static/media/"
     upward_box_y1 = 1075
     upward_box_y2 = 1140
     upward_box_x1 = 537

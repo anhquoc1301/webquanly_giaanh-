@@ -236,7 +236,6 @@ def delete_managementcar(request, pk):
 auto_download()
 
 @login_required
-# k=[]
 def export_report(request):
     num=CarNumber.objects.all()
     c = []
@@ -245,7 +244,9 @@ def export_report(request):
         b=request.POST.get('mydate')
         w=request.POST.get('cars')
         h=b.split('-')
+
         g=b.split('-')
+        request.session['date1'] = g
         if h[1][0]=='0':
             h[1]=h[1].strip('0')
             h[1] = int(h[1])
@@ -255,59 +256,98 @@ def export_report(request):
         h[0] = int(h[0])
         h[1] = int(h[1])
         h[2] = int(h[2])
-        local = 'user/media/abc'f'{g[0]}''x'f'{g[1]}''x'f'{g[2]}''/data.json'
+        local = 'static/media/abc'f'{g[0]}''x'f'{g[1]}''x'f'{g[2]}''/data.json'
+        # try:
+        print("open ")
         try:
-            print("open ")
             f = default_storage.open(os.path.join(local), 'r')
             data1 = json.loads(f.read())
             for i in data1:
-                    for j in a:
-                        if w == 'all':
-                            if i['Plate'] == j:
-                                c.append(i)
-                        else:
-                            if i['Plate'] == j and i['Direction'] == w:
-                                c.append(i)
-        except:
+                for j in a:
+                    if w == 'all':
+                        if j.endswith(i['Plate']):
+                            c.append(i)
+                    else:
+                        if i['Plate'] == j and i['Direction'] == w:
+                            c.append(i)
+
+        except FileNotFoundError:
             downloadListPlates(datetime(year=h[0], month=h[1], day=h[2]))
             f = default_storage.open(os.path.join(local), 'r')
             data1 = json.loads(f.read())
             for i in data1:
                 for j in a:
                     if w =='all':
-                        if i['Plate'] == j:
+                        if j.endswith(i['Plate']):
                             c.append(i)
                     else:
                         if i['Plate'] == j and i['Direction']==w:
                             c.append(i)
-
-    # global k
-    # k=c
+    request.session['data']=c
     context={'form2': num, 'form': c }
     return render(request, 'new_template/reportsheet.html',context)
+
+
 def export_report_excel(request):
-#         global k
-#         # response=HttpResponse(content_type='application/ms-excel')
-#         # response['Content-Disposition']='attachment; filename=Report'+\
-#         #     str(datetime.now())+'.xls'
-#         # wb=xlwt.Workbook(encoding='utf-8')
-#         # ws=wb.add_sheet('Report')
-#         # row_num=0
-#         # font_style=xlwt.XFStyle()
-#         # font_style.font.bold=True
-#         # columns=['Plate','Date','Time','Direction']
-#         # for col_num in range(len(columns)):
-#         #     ws.write(row_num, col_num,columns[col_num], font_style)
-#         # font_style=xlwt.XFStyle()
-#         # for row in k:
-#         #     row_num+=1
-#         #     for col_num in range(len(row)):
-#         #         ws.write(row_num, col_num, str(row[col_num]), font_style)
-#         # wb.save(response)
-#         # k=[]
-#         # return response
-#         print({k.Time})
-        return HttpResponse('s')
+        response=HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition']='attachment; filename=Report'+\
+            str(datetime.now())+'.xls'
+        wb=xlwt.Workbook(encoding='utf-8')
+        ws=wb.add_sheet('Report')
+        row_num=0
+        k=request.session['data']
+        # font_style=xlwt.XFStyle()
+        # font_style.font.bold=True
+        # columns=['Plate','Date','Time','Direction']
+        # for col_num in range(len(columns)):
+        #     ws.write(row_num, col_num,columns[col_num], font_style)
+        #
+        # font_style=xlwt.XFStyle()
+        # for row in k:
+        #     row_num+=1
+        #     for col_num in range(len(row)):
+        #         ws.write(row_num, col_num, row[col_num], font_style)
+        # wb.save(response)
+        # request.session['data']=[]
+        # return response
+        # print({k})
+        # return HttpResponse("success")
+
+        # dict1 = request.session['data']
+        # df = pd.DataFrame(data=dict1, index=[0])
+        # df = (df.T)
+        # df.to_excel(wb)
+        # return df
+def view_image (request, pk):
+    h=request.session['date1']
+    m='media/abc'f'{h[0]}''x'f'{h[1]}''x'f'{h[2]}''/'f'{pk}'''
+    print(m)
+    print(h[1], h[2], h[0])
+    return render(request, 'new_template/view_image.html',{'form1': m})
+def add_car_number(request):
+    if request.method=='POST':
+        num=request.POST.get('car_number')
+        if num=='':
+            messages.error(request, 'Thêm mới thất bại!!')
+            return redirect('user:add_car_number')
+
+        else:
+            new = CarNumber.objects.create(number=num)
+            new.save()
+            messages.success(request, 'Thêm mới thành công!')
+            return redirect('user:add_car_number')
+    return render(request, 'new_template/add_carnumber.html')
+
+def delete_car_number(request, pk):
+    a = CarNumber.objects.get(id=pk)
+    if request.method == 'POST':
+        a.delete()
+        messages.success(request, 'Xóa thành công!')
+        return redirect('user:view_car_number')
+    return render(request, 'new_template/delete_car_number.html', {'form': a})
+def view_car_number(request):
+    a=CarNumber.objects.all()
+    return render(request, 'new_template/view_car_number.html',{'form': a})
 
 
 
