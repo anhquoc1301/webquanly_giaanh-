@@ -5,4 +5,4 @@ Những phần chưa fix/hoàn thiện được
 -chưa làm phần xuất excel gồm có
 	+xuất báo cáo sau khi lọc
 	+xuất báo theo ngày(bao gồm tất cả chuyển xe trong ngày)
--hiển thị phần hướng đi bằng tiếng việt 
+-hiển thị phần hướng đi bằng tiếng việt.
