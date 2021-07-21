@@ -17,6 +17,7 @@ from django.core.files.storage import default_storage
 import os
 from .nvr_api import downloadListPlates
 from datetime import datetime
+import xlwt
 # Create your views here.
 class LoginClass(View):
     def get(self,request):
@@ -240,8 +241,9 @@ def export_report(request):
     num=CarNumber.objects.all()
     c = []
     if request.method== "POST" :
-        a=request.POST.getlist('mycheck')
+        a=request.POST.getlist('mycheck[]')
         b=request.POST.get('mydate')
+        w=request.POST.get('cars')
         h=b.split('-')
         g=b.split('-')
         if h[1][0]=='0':
@@ -259,21 +261,55 @@ def export_report(request):
             f = default_storage.open(os.path.join(local), 'r')
             data1 = json.loads(f.read())
             for i in data1:
-                for j in a:
-                    if i['Plate']==j:
-                        c.append(i)
+                    for j in a:
+                        if w == 'all':
+                            if i['Plate'] == j:
+                                c.append(i)
+                        else:
+                            if i['Plate'] == j and i['Direction'] == w:
+                                c.append(i)
         except:
             downloadListPlates(datetime(year=h[0], month=h[1], day=h[2]))
             f = default_storage.open(os.path.join(local), 'r')
             data1 = json.loads(f.read())
             for i in data1:
                 for j in a:
-                    if i['Plate']==j:
-                        c.append(i)
+                    if w =='all':
+                        if i['Plate'] == j:
+                            c.append(i)
+                    else:
+                        if i['Plate'] == j and i['Direction']==w:
+                            c.append(i)
+
+    global k
     k=c
     context={'form2': num, 'form': c }
     return render(request, 'new_template/reportsheet.html',context)
 def export_report_excel(request):
-    k
+        global k
+        # response=HttpResponse(content_type='application/ms-excel')
+        # response['Content-Disposition']='attachment; filename=Report'+\
+        #     str(datetime.now())+'.xls'
+        # wb=xlwt.Workbook(encoding='utf-8')
+        # ws=wb.add_sheet('Report')
+        # row_num=0
+        # font_style=xlwt.XFStyle()
+        # font_style.font.bold=True
+        # columns=['Plate','Date','Time','Direction']
+        # for col_num in range(len(columns)):
+        #     ws.write(row_num, col_num,columns[col_num], font_style)
+        # font_style=xlwt.XFStyle()
+        # for row in k:
+        #     row_num+=1
+        #     for col_num in range(len(row)):
+        #         ws.write(row_num, col_num, str(row[col_num]), font_style)
+        # wb.save(response)
+        # k=[]
+        # return response
+        print({k.Time})
+        return HttpResponse('ml')
+
+
+
 
 

@@ -13,7 +13,7 @@
                                             <div class="list-item " data-id="21">
                                                 <div>
                                                     <label class="ui-check m-0 ">
-                                                        <input type="checkbox" name="mycheck" value={{i.number}}>
+                                                        <input type="checkbox" name="mycheck[]" value={{i.number}}>
                                                         <i></i>
                                                     </label>
                                                 </div>
@@ -24,7 +24,22 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
+                                                <br/>
+                                                <br/>
+                                                <input type="button" id="btn1" value="Chọn hết"/>
+                                                <input type="button" id="btn2" value="Bỏ chọn"/>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 col-ms-4">
+                                <div class=" p-3">
+                                    <label for="cars">Chọn hướng xe:</label>
+                                        <select name="cars" id="cars">
+                                          <option value="all">Tất cả</option>
+                                          <option value="upward">Đi vào</option>
+                                          <option value="downward">Đi ra</option>
+                                          <option value="unknown">Không xác định</option>
+                                        </select>
                                 </div>
                             </div>
                             <div class="col-6 col-md-4 col-ms-4">
@@ -52,7 +67,7 @@
                                     <th data-sortable="true" data-field="bsx" style="width: 7cm;">Biển số xe</th>
                                     <th data-sortable="true" data-field="date" style="width: 4cm;">Ngày</th>
                                     <th data-sortable="true" data-field="time" style="width: 4cm;">Giờ</th>
-                                    <th data-sortable="true" data-field="project" style="width: 4cm;">Khối lượng</th>
+                                    <th data-sortable="true" data-field="project" style="width: 4cm;">Hướng đi</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -65,17 +80,45 @@
                                         <td>{{i.Plate}}</td>
                                         <td>{{i.Date}}</td>
                                         <td>{{i.Time}}</td>
-                                        <td>1300</td>
+                                        <td>{{i.Direction}}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
-                        <div>.
-                            <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Xuất báo cáo</button>
+                        <div>
+                            <a href="{% url 'user:export_report_excel'%}">
+                                <button class="btn w-sm mb-1 btn-md indigo" style="width:4cm ;">Xuất báo cáo</button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </form>
+            <script language="javascript">
 
+                        // Chức năng chọn hết
+                        document.getElementById("btn1").onclick = function ()
+                        {
+                            // Lấy danh sách checkbox
+                            var checkboxes = document.getElementsByName('mycheck[]');
+
+                            // Lặp và thiết lập checked
+                            for (var i = 0; i < checkboxes.length; i++){
+                                checkboxes[i].checked = true;
+                            }
+                        };
+
+                        // Chức năng bỏ chọn hết
+                        document.getElementById("btn2").onclick = function ()
+                        {
+                            // Lấy danh sách checkbox
+                            var checkboxes = document.getElementsByName('mycheck[]');
+
+                            // Lặp và thiết lập Uncheck
+                            for (var i = 0; i < checkboxes.length; i++){
+                                checkboxes[i].checked = false;
+                            }
+                        };
+
+            </script>
         <!-- ############ Main END-->
     {% endblock %}
