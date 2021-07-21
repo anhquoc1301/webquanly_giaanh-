@@ -235,8 +235,8 @@ def delete_managementcar(request, pk):
 
 auto_download()
 
-# @login_required
-k=[]
+@login_required
+# k=[]
 def export_report(request):
     num=CarNumber.objects.all()
     c = []
@@ -281,33 +281,33 @@ def export_report(request):
                         if i['Plate'] == j and i['Direction']==w:
                             c.append(i)
 
-    global k
-    k=c
+    # global k
+    # k=c
     context={'form2': num, 'form': c }
     return render(request, 'new_template/reportsheet.html',context)
 def export_report_excel(request):
-        global k
-        # response=HttpResponse(content_type='application/ms-excel')
-        # response['Content-Disposition']='attachment; filename=Report'+\
-        #     str(datetime.now())+'.xls'
-        # wb=xlwt.Workbook(encoding='utf-8')
-        # ws=wb.add_sheet('Report')
-        # row_num=0
-        # font_style=xlwt.XFStyle()
-        # font_style.font.bold=True
-        # columns=['Plate','Date','Time','Direction']
-        # for col_num in range(len(columns)):
-        #     ws.write(row_num, col_num,columns[col_num], font_style)
-        # font_style=xlwt.XFStyle()
-        # for row in k:
-        #     row_num+=1
-        #     for col_num in range(len(row)):
-        #         ws.write(row_num, col_num, str(row[col_num]), font_style)
-        # wb.save(response)
-        # k=[]
-        # return response
-        print({k.Time})
-        return HttpResponse('ml')
+#         global k
+#         # response=HttpResponse(content_type='application/ms-excel')
+#         # response['Content-Disposition']='attachment; filename=Report'+\
+#         #     str(datetime.now())+'.xls'
+#         # wb=xlwt.Workbook(encoding='utf-8')
+#         # ws=wb.add_sheet('Report')
+#         # row_num=0
+#         # font_style=xlwt.XFStyle()
+#         # font_style.font.bold=True
+#         # columns=['Plate','Date','Time','Direction']
+#         # for col_num in range(len(columns)):
+#         #     ws.write(row_num, col_num,columns[col_num], font_style)
+#         # font_style=xlwt.XFStyle()
+#         # for row in k:
+#         #     row_num+=1
+#         #     for col_num in range(len(row)):
+#         #         ws.write(row_num, col_num, str(row[col_num]), font_style)
+#         # wb.save(response)
+#         # k=[]
+#         # return response
+#         print({k.Time})
+        return HttpResponse('s')
 
 
 
