@@ -287,7 +287,7 @@ def export_report(request):
     context={'form2': num, 'form': c }
     return render(request, 'new_template/reportsheet.html',context)
 
-
+@login_required
 def export_report_excel(request):
         response=HttpResponse(content_type='application/ms-excel')
         response['Content-Disposition']='attachment; filename=Report'+\
@@ -318,12 +318,21 @@ def export_report_excel(request):
         # df = (df.T)
         # df.to_excel(wb)
         # return df
+
+
+@login_required
 def view_image (request, pk):
     h=request.session['date1']
-    m='media/abc'f'{h[0]}''x'f'{h[1]}''x'f'{h[2]}''/'f'{pk}'''
+    # m='media/abc'f'{h[0]}''x'f'{h[1]}''x'f'{h[2]}''/'f'{pk}'''
+    m='media/abc2021x07x13/ch00002_01000000025099767142400187070_29H75756.jpg'
     print(m)
     print(h[1], h[2], h[0])
-    return render(request, 'new_template/view_image.html',{'form1': m})
+    return render(request, 'new_template/view_image.html',{'form1': m})-
+
+
+
+@login_required
+@admin_only
 def add_car_number(request):
     if request.method=='POST':
         num=request.POST.get('car_number')
@@ -338,6 +347,9 @@ def add_car_number(request):
             return redirect('user:add_car_number')
     return render(request, 'new_template/add_carnumber.html')
 
+
+@login_required
+@admin_only
 def delete_car_number(request, pk):
     a = CarNumber.objects.get(id=pk)
     if request.method == 'POST':
@@ -345,6 +357,10 @@ def delete_car_number(request, pk):
         messages.success(request, 'Xóa thành công!')
         return redirect('user:view_car_number')
     return render(request, 'new_template/delete_car_number.html', {'form': a})
+
+
+@login_required
+@admin_only
 def view_car_number(request):
     a=CarNumber.objects.all()
     return render(request, 'new_template/view_car_number.html',{'form': a})
